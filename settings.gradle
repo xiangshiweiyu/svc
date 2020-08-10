@@ -1,0 +1,3 @@
+include ':svc'
+include ':app'
+rootProject.name = "SliderVerificationCode"
