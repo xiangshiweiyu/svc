@@ -122,8 +122,9 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
     init {
         //配置滑块 大小  长宽为 50 dp
         val defaultSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                50f,
+                30f,
                 resources.displayMetrics).toInt()
+
         mSvcHeight = defaultSize
         mSvcWidth = defaultSize
 
@@ -247,7 +248,6 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
                 floatArrayOf(0f, 0.5f),
                 Shader.TileMode.MIRROR)
 
-
         //模仿斗鱼 是一个平行四边形滚动过去
         mSuccessPath = Path()
         mSuccessPath.apply {
@@ -280,32 +280,28 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
     }
 
     /**
-     * 生成验证码 path
+     * 生成验证码 滑块
      */
     private fun createCaptchaPath() {
         //随机生成 gap
         var gap = mRandom.nextInt(mSvcWidth / 2)
         // 宽度/3  获取更好展示效果
         gap = mSvcWidth / 3
-
         //随机产生 缺口部分左上角 x，y 坐标
         mCaptchaX = mRandom.nextInt(mWidth - mSvcWidth - gap)
         mCaptchaY = mRandom.nextInt(mHeight - mSvcHeight - gap)
 
         mCaptchaPath.apply {
             reset()
-
             lineTo(0f, 0f)
             //左上角开始 绘制一个不规则的阴影
             moveTo(mCaptchaX.toFloat(), mCaptchaY.toFloat())
-
             lineTo((mCaptchaX + gap).toFloat(), mCaptchaY.toFloat())
             //draw一个随机凹凸的圆
             SvcSizeUtils.drawPartCircle(PointF((mCaptchaX + gap).toFloat(), mCaptchaY.toFloat()),
                     PointF((mCaptchaX + gap * 2).toFloat(), mCaptchaY.toFloat()),
                     mCaptchaPath,
                     mRandom.nextBoolean())
-
             //右上角
             lineTo((mCaptchaX + mSvcWidth).toFloat(), mCaptchaY.toFloat())
             lineTo((mCaptchaX + mSvcWidth).toFloat(), (mCaptchaY + gap).toFloat())
@@ -315,7 +311,6 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
                     PointF((mCaptchaX + mSvcWidth).toFloat(), (mCaptchaY + gap * 2).toFloat()),
                     mCaptchaPath,
                     mRandom.nextBoolean())
-
             //右下角
             lineTo((mCaptchaX + mSvcWidth).toFloat(), (mCaptchaY + mSvcHeight).toFloat())
             lineTo((mCaptchaX + mSvcWidth - gap).toFloat(), (mCaptchaY + mSvcHeight).toFloat())
@@ -326,7 +321,6 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
                             (mCaptchaY + mSvcHeight).toFloat()),
                     mCaptchaPath,
                     mRandom.nextBoolean())
-
             //左下角
             lineTo(mCaptchaX.toFloat(), (mCaptchaY + mSvcHeight).toFloat())
             lineTo(mCaptchaX.toFloat(), (mCaptchaY + mSvcHeight - gap).toFloat())
@@ -336,7 +330,6 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
                     PointF(mCaptchaX.toFloat(), (mCaptchaY + mSvcHeight - gap * 2).toFloat()),
                     mCaptchaPath,
                     mRandom.nextBoolean())
-
             close()
         }
     }
@@ -410,7 +403,7 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
     /**
      * 校验 缺块是否 滑入阴影内
      */
-    private fun checkCaptcha() {
+    public fun checkCaptcha() {
 
         if (null != onSvcVerificationListener && isMatchMode) {
             //判断 滑块与缺口重合度 误差默认为 3dp
@@ -454,20 +447,7 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
      */
     private var onSvcVerificationListener: OnSvcVerificationListener? = null
 
-    /**
-     * 获取 监听接口
-     */
-    public fun getOnSvcVerificationListener(): OnSvcVerificationListener? {
-        return onSvcVerificationListener
-    }
 
-    /**
-     * 设置 验证码验证回调
-     */
-    public fun setOnSvcVerificationListener(onSvcVerificationListener: OnSvcVerificationListener): SvcView {
-        this.onSvcVerificationListener = onSvcVerificationListener
-        return this
-    }
 }
 
 

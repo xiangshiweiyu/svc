@@ -35,34 +35,18 @@ class SvcSizeUtils {
                 val flag = if (end.y - start.y > 0) 1 else -1
                 if (outer) {
                     //凸的 两个半圆
-                    path.cubicTo(start.x + gap * flag,
-                            start.y,
-                            middle.x + r1 * flag,
-                            middle.y - gap * flag,
-                            middle.x + r1 * flag,
-                            middle.y)
+                    path.cubicTo(start.x + gap * flag, start.y, middle.x + r1 * flag,
+                            middle.y - gap * flag, middle.x + r1 * flag, middle.y)
 
-                    path.cubicTo(middle.x + r1 * flag,
-                            middle.y + gap * flag,
-                            end.x + gap * flag,
-                            end.y,
-                            end.x,
-                            end.y)
+                    path.cubicTo(middle.x + r1 * flag, middle.y + gap * flag,
+                            end.x + gap * flag, end.y, end.x, end.y)
                 } else {
                     //凹的 两个半圆
-                    path.cubicTo(start.x - gap * flag,
-                            start.y,
-                            middle.x - r1 * flag,
-                            middle.y - gap * flag,
-                            middle.x - r1 * flag,
-                            middle.y)
+                    path.cubicTo(start.x - gap * flag, start.y, middle.x - r1 * flag,
+                            middle.y - gap * flag, middle.x - r1 * flag, middle.y)
 
-                    path.cubicTo(middle.x - r1 * flag,
-                            middle.y + gap * flag,
-                            end.x - gap * flag,
-                            end.y,
-                            end.x,
-                            end.y)
+                    path.cubicTo(middle.x - r1 * flag, middle.y + gap * flag,
+                            end.x - gap * flag, end.y, end.x, end.y)
                 }
 
             } else {
@@ -71,34 +55,18 @@ class SvcSizeUtils {
                 val flag = if (end.x - start.x > 0) 1 else -1
                 if (outer) {
                     //凸的 两个半圆
-                    path.cubicTo(start.x,
-                            start.y - gap * flag,
-                            middle.x - gap * flag,
-                            middle.y - r1 * flag,
-                            middle.x,
-                            middle.y + -r1 * flag)
+                    path.cubicTo(start.x, start.y - gap * flag, middle.x - gap * flag,
+                            middle.y - r1 * flag, middle.x, middle.y + -r1 * flag)
 
-                    path.cubicTo(middle.x + gap * flag,
-                            middle.y - r1 * flag,
-                            end.x,
-                            end.y - gap * flag,
-                            end.x,
-                            end.y)
+                    path.cubicTo(middle.x + gap * flag, middle.y - r1 * flag,
+                            end.x, end.y - gap * flag, end.x, end.y)
                 } else {
                     //凹 两个半圆
-                    path.cubicTo(start.x,
-                            start.y + gap * flag,
-                            middle.x - gap * flag,
-                            middle.y + r1 * flag,
-                            middle.x,
-                            middle.y + r1 * flag)
+                    path.cubicTo(start.x, start.y + gap * flag, middle.x - gap * flag,
+                            middle.y + r1 * flag, middle.x, middle.y + r1 * flag)
 
-                    path.cubicTo(middle.x + gap * flag,
-                            middle.y + r1 * flag,
-                            end.x,
-                            end.y + gap * flag,
-                            end.x,
-                            end.y)
+                    path.cubicTo(middle.x + gap * flag, middle.y + r1 * flag, end.x,
+                            end.y + gap * flag, end.x, end.y)
                 }
             }
         }
