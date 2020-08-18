@@ -122,9 +122,8 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
     init {
         //配置滑块 大小  长宽为 50 dp
         val defaultSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                30f,
+                50f,
                 resources.displayMetrics).toInt()
-
         mSvcHeight = defaultSize
         mSvcWidth = defaultSize
 
@@ -247,6 +246,7 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
                 intArrayOf(0x00ffffff, -0x77000001),
                 floatArrayOf(0f, 0.5f),
                 Shader.TileMode.MIRROR)
+
 
         //模仿斗鱼 是一个平行四边形滚动过去
         mSuccessPath = Path()
@@ -447,7 +447,20 @@ public class SvcView @JvmOverloads constructor(context: Context? = null,
      */
     private var onSvcVerificationListener: OnSvcVerificationListener? = null
 
+    /**
+     * 获取 监听接口
+     */
+    public fun getOnSvcVerificationListener(): OnSvcVerificationListener? {
+        return onSvcVerificationListener
+    }
 
+    /**
+     * 设置 验证码验证回调
+     */
+    public fun setOnSvcVerificationListener(onSvcVerificationListener: OnSvcVerificationListener): SvcView {
+        this.onSvcVerificationListener = onSvcVerificationListener
+        return this
+    }
 }
 
 
